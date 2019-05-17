@@ -20,9 +20,7 @@ struct wave {
     uint16_t current_idx;
 	uint16_t aera_size;
 	uint16_t octave_coeff;
-#ifdef PRINT_FREQUENCY
 	float frequency;
-#endif
 };
 
 extern __IO uint32_t rfft_cnt;

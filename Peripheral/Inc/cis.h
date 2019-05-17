@@ -13,7 +13,7 @@
 
 enum color { RED, GREEN, BLUE };
 
-__IO uint32_t cis_adc_data[CIS_PIXELS_NB];
+__IO int32_t cis_adc_data[CIS_PIXELS_NB];
 
 #ifdef DEBUG_CIS
 extern __IO uint32_t cis_dbg_cnt;
