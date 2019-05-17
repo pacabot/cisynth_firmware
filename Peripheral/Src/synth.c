@@ -184,7 +184,7 @@ int32_t initSamplingTimer(uint32_t sampling_freq)
 		Error_Handler();
 	}
 
-#ifndef DEBUG_SAMPLE_RATE
+#ifndef DEBUG_SYNTH_SAMPLE_RATE
 	if (HAL_TIM_Base_Start_IT(&htim15) != HAL_OK)
 	{
 		/* Starting Error */
@@ -234,7 +234,6 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 		}
 	}
 	HAL_DAC_SetValue(&hdac1, DAC_CHANNEL_1, DAC_ALIGN_12B_R, (uint32_t)(signal_summation * ((double)max_power / signal_power_summation)) >> 4);
-//	printf ("%d\n",(uint32_t)(signal_summation * ((double)max_power / signal_power_summation)) >> 4);
 
 	++rfft_cnt;
 }

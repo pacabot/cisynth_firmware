@@ -126,7 +126,7 @@ uint32_t init_waves( uint16_t **unitary_waveform, struct wave *waves)
 	if (note < NUMBER_OF_NOTES)
 	{
 		printf("Configuration fail, current pix : %d\n", (int)note);
-		Error_Handler();
+		while(1);
 	}
 
 	return buffer_len;

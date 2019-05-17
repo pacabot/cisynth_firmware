@@ -139,7 +139,7 @@ int main(void)
 	{
 		if (((HAL_GetTick() - old_tick)) < 1000)
 		{
-#ifdef DEBUG_SAMPLE_RATE
+#ifdef DEBUG_SYNTH_SAMPLE_RATE
 			HAL_TIM_PeriodElapsedCallback(&htim15);
 #endif
 
@@ -148,7 +148,7 @@ int main(void)
 		{
 #ifdef DEBUG_SYNTH
 			printf("-----------------------------------------\n");
-			printf("rfft  cnt : %d\n", (int)rfft_cnt);
+			printf("SYNTH cnt : %d\n", (int)rfft_cnt);
 			rfft_cnt = 0;
 #endif
 #ifdef DEBUG_CIS
@@ -156,7 +156,7 @@ int main(void)
 			printf("CIS cnt   : %d\n", (int)cis_dbg_cnt);
 			printf("CIS cal   : %d\n", (int)cis_dbg_data_cal);
 			printf("CIS dat   : %d\n", (int)cis_dbg_data);
-			printf("ADC [240] : %d\n", (int)cis_adc_data[240]);
+			printf("ADC [20] : %d\n", (int)cis_adc_data[20]);
 			cis_dbg_cnt = 0;
 #endif
 

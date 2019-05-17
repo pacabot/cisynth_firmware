@@ -25,7 +25,7 @@
 
 /* Private typedef -----------------------------------------------------------*/
 enum cisReadStep{START_PULSE, INIT_ZONE, CAL_ZONE, DATA_ZONE, END_ZONE};
-enum cisCalStep{CAL_ON, CAL_OFF};
+//enum cisCalStep{CAL_ON, CAL_OFF};
 
 /* Private define ------------------------------------------------------------*/
 
@@ -33,8 +33,8 @@ enum cisCalStep{CAL_ON, CAL_OFF};
 
 /* Private variables ---------------------------------------------------------*/
 __IO uint32_t cis_adc_data[CIS_PIXELS_NB] = {0};
-static __IO uint32_t cis_adc_offset[CIS_PIXELS_NB] = {0};
-static __IO enum cisCalStep calibration_state = CAL_OFF;
+//static __IO uint32_t cis_adc_offset[CIS_PIXELS_NB] = {0};
+//static __IO enum cisCalStep calibration_state = CAL_OFF;
 
 #ifdef DEBUG_CIS
 __IO uint32_t cis_dbg_cnt = 0;
@@ -45,7 +45,7 @@ __IO uint32_t cis_dbg_data = 0;
 /* Private function prototypes -----------------------------------------------*/
 int32_t cisTIM_Init(uint32_t cis_clk_freq);
 void cisADC_Init(void);
-void cisCalibration(void);
+//void cisCalibration(void);
 
 /* Private user code ---------------------------------------------------------*/
 
@@ -54,31 +54,31 @@ void cisInit(void)
 	cisADC_Init();
 	cisTIM_Init(CIS_CLK_FREQ);
 	HAL_Delay(100);
-	cisCalibration();
+	//	cisCalibration();
 }
 
 void cisCalibration(void)
 {
-	uint32_t cnt = 0;
-
-	printf("/***** START CIS CALIBRATION *****/\n");
-	calibration_state = CAL_ON;
-
-	while (cnt < CIS_CAL_CYCLE)
-	{
-		if (calibration_state != CAL_ON)
-		{
-			cnt++;
-			calibration_state = CAL_ON;
-		}
-	}
-	calibration_state = CAL_OFF;
-
-	for (uint32_t i = 0; i < CIS_PIXELS_NB; i++)
-	{
-		cis_adc_offset[i] /= CIS_CAL_CYCLE;
-	}
-	printf("/******** END CALIBRATION ********/\n");
+	//	uint32_t cnt = 0;
+	//
+	//	printf("/***** START CIS CALIBRATION *****/\n");
+	//	calibration_state = CAL_ON;
+	//
+	//	while (cnt < CIS_CAL_CYCLE)
+	//	{
+	//		if (calibration_state != CAL_ON)
+	//		{
+	//			cnt++;
+	//			calibration_state = CAL_ON;
+	//		}
+	//	}
+	//	calibration_state = CAL_OFF;
+	//
+	//	for (uint32_t i = 0; i < CIS_PIXELS_NB; i++)
+	//	{
+	//		cis_adc_offset[i] /= CIS_CAL_CYCLE;
+	//	}
+	//	printf("/******** END CALIBRATION ********/\n");
 }
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
@@ -86,7 +86,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	if (GPIO_Pin != GPIO_PIN_13)
 		return;
 
-//	cisCalibration();
+	//	cisCalibration();
 }
 
 /**
@@ -208,48 +208,48 @@ void cisADC_Init(void)
 	/*******************************************************************************************/
 	/** Common config
 	 */
-//	hadc2.Instance = ADC2;
-//	hadc2.Init.ClockPrescaler = ADC_CLOCK_ASYNC_DIV2;
-//	hadc2.Init.Resolution = ADC_RESOLUTION_16B;
-//	hadc2.Init.ScanConvMode = ADC_SCAN_DISABLE;
-//	hadc2.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
-//	hadc2.Init.LowPowerAutoWait = DISABLE;
-//	hadc2.Init.ContinuousConvMode = DISABLE;
-//	hadc2.Init.NbrOfConversion = 1;
-//	hadc2.Init.DiscontinuousConvMode = DISABLE;
-//	hadc2.Init.ExternalTrigConv = ADC_EXTERNALTRIG_HR1_ADCTRG1;
-//	hadc2.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_FALLING;
-//	hadc2.Init.ConversionDataManagement = ADC_CONVERSIONDATA_DR;
-//	hadc2.Init.Overrun = ADC_OVR_DATA_OVERWRITTEN;
-//	hadc2.Init.LeftBitShift = ADC_LEFTBITSHIFT_NONE;
-//	hadc2.Init.OversamplingMode = DISABLE;
-//	if (HAL_ADC_Init(&hadc2) != HAL_OK)
-//	{
-//		Error_Handler();
-//	}
-//	/** Configure Regular Channel
-//	 */
-//	sConfig.Channel = ADC_CHANNEL_9;
-//	sConfig.Rank = ADC_REGULAR_RANK_1;
-//	sConfig.SamplingTime = ADC_SAMPLETIME_8CYCLES_5;
-//	sConfig.SingleDiff = ADC_SINGLE_ENDED;
-//	sConfig.OffsetNumber = ADC_OFFSET_NONE;
-//	sConfig.Offset = 0;
-//	if (HAL_ADC_ConfigChannel(&hadc2, &sConfig) != HAL_OK)
-//	{
-//		Error_Handler();
-//	}
-//	/* ### Start calibration ############################################ */
-//	if (HAL_ADCEx_Calibration_Start(&hadc2, ADC_CALIB_OFFSET, ADC_SINGLE_ENDED) != HAL_OK)
-//	{
-//		Error_Handler();
-//	}
+	//	hadc2.Instance = ADC2;
+	//	hadc2.Init.ClockPrescaler = ADC_CLOCK_ASYNC_DIV2;
+	//	hadc2.Init.Resolution = ADC_RESOLUTION_16B;
+	//	hadc2.Init.ScanConvMode = ADC_SCAN_DISABLE;
+	//	hadc2.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
+	//	hadc2.Init.LowPowerAutoWait = DISABLE;
+	//	hadc2.Init.ContinuousConvMode = DISABLE;
+	//	hadc2.Init.NbrOfConversion = 1;
+	//	hadc2.Init.DiscontinuousConvMode = DISABLE;
+	//	hadc2.Init.ExternalTrigConv = ADC_EXTERNALTRIG_HR1_ADCTRG1;
+	//	hadc2.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_FALLING;
+	//	hadc2.Init.ConversionDataManagement = ADC_CONVERSIONDATA_DR;
+	//	hadc2.Init.Overrun = ADC_OVR_DATA_OVERWRITTEN;
+	//	hadc2.Init.LeftBitShift = ADC_LEFTBITSHIFT_NONE;
+	//	hadc2.Init.OversamplingMode = DISABLE;
+	//	if (HAL_ADC_Init(&hadc2) != HAL_OK)
+	//	{
+	//		Error_Handler();
+	//	}
+	//	/** Configure Regular Channel
+	//	 */
+	//	sConfig.Channel = ADC_CHANNEL_9;
+	//	sConfig.Rank = ADC_REGULAR_RANK_1;
+	//	sConfig.SamplingTime = ADC_SAMPLETIME_8CYCLES_5;
+	//	sConfig.SingleDiff = ADC_SINGLE_ENDED;
+	//	sConfig.OffsetNumber = ADC_OFFSET_NONE;
+	//	sConfig.Offset = 0;
+	//	if (HAL_ADC_ConfigChannel(&hadc2, &sConfig) != HAL_OK)
+	//	{
+	//		Error_Handler();
+	//	}
+	//	/* ### Start calibration ############################################ */
+	//	if (HAL_ADCEx_Calibration_Start(&hadc2, ADC_CALIB_OFFSET, ADC_SINGLE_ENDED) != HAL_OK)
+	//	{
+	//		Error_Handler();
+	//	}
 
-//	/* ### Start conversion in DMA mode ################################# */
-//	if (HAL_ADC_Start(&hadc2) != HAL_OK)
-//	{
-//		Error_Handler();
-//	}
+	//	/* ### Start conversion in DMA mode ################################# */
+	//	if (HAL_ADC_Start(&hadc2) != HAL_OK)
+	//	{
+	//		Error_Handler();
+	//	}
 }
 
 #define CIS_SP_TICK 				(1)
@@ -264,8 +264,8 @@ void cisADC_Init(void)
  */
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
-//	if (hadc != &hadc1)
-//		return;
+	//	if (hadc != &hadc1)
+	//		return;
 
 #ifdef DEBUG_CIS
 	++cis_dbg_cnt;
@@ -276,7 +276,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 	static uint32_t pixel_cnt = 0;
 	static uint32_t callback_cnt = 0;
 	static uint32_t cnt = 0;
-	static bool cal_state = FALSE;
+	//	static bool cal_state = FALSE;
 	static enum cisReadStep cis_read_step = START_PULSE;
 
 	switch (callback_cnt)
@@ -297,14 +297,14 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 		//		printf("C %d\n", (int)cis_adc_cal);
 		cis_dbg_data_cal = cis_adc_cal;
 #endif
-		if (calibration_state != CAL_OFF)
-		{
-			cal_state = TRUE;
-		}
-		else
-		{
-			cal_state = OFF;
-		}
+		//		if (calibration_state != CAL_OFF)
+		//		{
+		//			cal_state = TRUE;
+		//		}
+		//		else
+		//		{
+		//			cal_state = OFF;
+		//		}
 		break;
 	case CIS_DATA_TICK:
 		cis_read_step = END_ZONE;
@@ -312,7 +312,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 		cis_adc_cal = 0;
 		break;
 	case CIS_END_TICK:
-		calibration_state = CAL_OFF;
+		//		calibration_state = CAL_OFF;
 		cis_read_step = START_PULSE;
 		callback_cnt = 0;
 		return;
@@ -331,7 +331,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 		HAL_GPIO_WritePin(CIS_SP_GPIO_Port, CIS_SP_Pin, GPIO_PIN_RESET);
 		break;
 	case CAL_ZONE:
-		cis_adc_cal += 1;// HAL_ADC_GetValue(&hadc2);
+		cis_adc_cal += HAL_ADC_GetValue(&hadc1);
 		++cnt;
 		break;
 	case DATA_ZONE:
@@ -346,21 +346,21 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 		}
 		else
 		{
-			if (cal_state == TRUE)
+			//			if (cal_state == TRUE)
+			//			{
+			//				cis_adc_offset[pixel_cnt] += (temp_data / PIXEL_PER_COMMA);
+			//			}
+			//			else
+			//			{
+			if (cis_adc_cal < (temp_data / PIXEL_PER_COMMA))
 			{
-				cis_adc_offset[pixel_cnt] += (temp_data / PIXEL_PER_COMMA);
+				cis_adc_data[pixel_cnt] = (temp_data / PIXEL_PER_COMMA) - cis_adc_cal;
 			}
 			else
 			{
-				if (cis_adc_offset[pixel_cnt] > (temp_data / PIXEL_PER_COMMA))
-				{
-					cis_adc_data[pixel_cnt] = cis_adc_offset[pixel_cnt] - (temp_data / PIXEL_PER_COMMA);
-				}
-				else
-				{
-					cis_adc_data[pixel_cnt] = 0;
-				}
+				cis_adc_data[pixel_cnt] = 0;
 			}
+			//			}
 			++pixel_cnt;
 			pixel_per_comma = 0;
 			temp_data = 0;

@@ -241,8 +241,8 @@
 					</folderInfo>
 					<fileInfo id="fr.ac6.managedbuild.config.gnu.cross.exe.debug.934385653.1025332281.635794324" name="cis.c" rcbsApplicability="disable" resourcePath="Peripheral/Src/cis.c" toolsToInvoke="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.1660089509.192348308">
 						<tool id="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.1660089509.192348308" name="MCU GCC Compiler" superClass="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.1660089509">
-							<option id="fr.ac6.managedbuild.gnu.c.compiler.option.optimization.level.838584789" superClass="fr.ac6.managedbuild.gnu.c.compiler.option.optimization.level" useByScannerDiscovery="false" value="fr.ac6.managedbuild.gnu.c.optimization.level.more" valueType="enumerated"/>
-							<option id="gnu.c.compiler.option.optimization.flags.168732514" superClass="gnu.c.compiler.option.optimization.flags" useByScannerDiscovery="false" value="" valueType="string"/>
+							<option id="fr.ac6.managedbuild.gnu.c.compiler.option.optimization.level.838584789" name="Optimization Level" superClass="fr.ac6.managedbuild.gnu.c.compiler.option.optimization.level" useByScannerDiscovery="false" value="fr.ac6.managedbuild.gnu.c.optimization.level.more" valueType="enumerated"/>
+							<option id="gnu.c.compiler.option.optimization.flags.168732514" name="Other optimization flags" superClass="gnu.c.compiler.option.optimization.flags" useByScannerDiscovery="false" value="" valueType="string"/>
 							<inputType id="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.input.c.265144391" superClass="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.input.c"/>
 							<inputType id="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.input.s.236805502" superClass="fr.ac6.managedbuild.tool.gnu.cross.c.compiler.input.s"/>
 						</tool>
