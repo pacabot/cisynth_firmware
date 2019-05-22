@@ -53,7 +53,7 @@
 /********************         Wave generation definitions          ********************/
 /**************************************************************************************/
 #define WAVE_AMP_RESOLUTION (65535)   	//in decimal
-#define START_FREQUENCY     (143.654)  	//FA 1
+#define START_FREQUENCY     (200)  	//FA 1
 #define MAX_OCTAVE_NUMBER   (10)
 #define SEMITONE_PER_OCTAVE (12)
 #define COMMA_PER_SEMITONE  (4.5)		//4.5
