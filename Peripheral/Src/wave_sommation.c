@@ -1,5 +1,5 @@
 /*
- * wave_ssommation.c
+ * wave_sommation.c
  *
  *  Created on: 24 avr. 2019
  *      Author: zhonx

@@ -32,7 +32,7 @@ enum cisReadStep{START_PULSE, INIT_ZONE, CAL_ZONE, DATA_ZONE, END_ZONE};
 /* Private macro -------------------------------------------------------------*/
 
 /* Private variables ---------------------------------------------------------*/
-__IO int32_t cis_adc_data[CIS_PIXELS_NB] = {0};
+__IO uint32_t cis_adc_data[CIS_PIXELS_NB] = {0};
 
 #ifdef DEBUG_CIS
 __IO uint32_t cis_dbg_cnt = 0;
@@ -149,7 +149,7 @@ void cisADC_Init(void)
 	hadc1.Init.ConversionDataManagement = ADC_CONVERSIONDATA_DR;
 	hadc1.Init.Overrun = ADC_OVR_DATA_OVERWRITTEN;
 	hadc1.Init.LeftBitShift = ADC_LEFTBITSHIFT_NONE;
-	hadc1.Init.OversamplingMode = ENABLE;
+	hadc1.Init.OversamplingMode = DISABLE;
 	if (HAL_ADC_Init(&hadc1) != HAL_OK)
 	{
 		Error_Handler();
@@ -163,7 +163,7 @@ void cisADC_Init(void)
 	/* Configure Regular Channel */
 	sConfig.Channel = ADC_CHANNEL_5;
 	sConfig.Rank = ADC_REGULAR_RANK_1;
-	sConfig.SamplingTime = ADC_SAMPLETIME_16CYCLES_5;
+	sConfig.SamplingTime = ADC_SAMPLETIME_2CYCLES_5;
 	sConfig.SingleDiff = ADC_SINGLE_ENDED;
 	sConfig.OffsetNumber = ADC_OFFSET_NONE;
 	sConfig.Offset = 0;
@@ -262,20 +262,24 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 #ifdef DEBUG_CIS
 		cis_dbg_data = HAL_ADC_GetValue(&hadc1);
 #endif
-		if (pixel_per_comma >> PIXEL_PER_COMMA)
+		if (pixel_per_comma < PIXEL_PER_COMMA)
 		{
-			cis_adc_data[pixel_cnt] = (temp_data >> PIXEL_PER_COMMA) - cis_adc_cal;
-
-			if (cis_adc_data[pixel_cnt] >> 31)
+			++pixel_per_comma;
+		}
+		else
+		{
+			if (cis_adc_cal < (temp_data / PIXEL_PER_COMMA))
+			{
+				cis_adc_data[pixel_cnt] = (temp_data / PIXEL_PER_COMMA) - cis_adc_cal;
+			}
+			else
+			{
 				cis_adc_data[pixel_cnt] = 0;
+			}
 
 			++pixel_cnt;
 			pixel_per_comma = 0;
 			temp_data = 0;
-		}
-		else
-		{
-			++pixel_per_comma;
 		}
 		break;
 	case END_ZONE:

@@ -31,8 +31,8 @@
 /* Private macro -------------------------------------------------------------*/
 
 /* Private variables ---------------------------------------------------------*/
-uint16_t *unitary_waveform = NULL;
-struct wave waves[NUMBER_OF_NOTES];
+static __IO uint16_t *unitary_waveform = NULL;
+static __IO struct wave waves[NUMBER_OF_NOTES];
 __IO uint32_t rfft_cnt = 0;
 
 /* Private function prototypes -----------------------------------------------*/
